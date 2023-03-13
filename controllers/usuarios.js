@@ -33,7 +33,7 @@ const usuariosPost = async (req, res = response) => {
     res.status(201).json(usuario);
 }
 
-const usuariosPut = async (req, res = response) => { 
+const usuariosPut = (req, res = response) => { 
     const { id } = req.params;
     const { _id, password, google, correo, ...data } = req.body;
 
@@ -42,13 +42,22 @@ const usuariosPut = async (req, res = response) => {
         data.password = bcrypt.hashSync(password, salt)
     }
 
-    const usuario = await Usuario.findByIdAndUpdate(id, data, {new: true});
+    const usuario = Usuario.findByIdAndUpdate(id, data, {new: true});
     res.json(usuario);
 }
 
-const usuariosDelete = (req, res = response) => {
+const usuariosDelete = async (req, res = response) => {
+    const { id } = req.params
+
+    // ! Borrado permanente de BD
+    // const user = await Usuario.findByIdAndDelete( id );
+
+    const user = await Usuario.findByIdAndUpdate( id ,{estado: false} , {new: true})
+
+
     res.json({
-        msg: 'delete API'
+        msg: 'El siguiente usuario fue borrado',
+        user
     });
 }
 
@@ -56,5 +65,5 @@ module.exports = {
     usuariosGet,
     usuariosPost,
     usuariosPut,
-    usuariosDelete
+    usuariosDelete,
 }
