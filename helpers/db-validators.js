@@ -1,4 +1,4 @@
-const admin = require('../models/admin');
+
 const Role = require('../models/role')
 const Usuario = require('../models/usuario');
 
@@ -17,15 +17,9 @@ const idValidatorUsuario = async ( id ) => {
     if(!existeId) throw new Error(`El id ${id} que se ingreso no existe en la BD`);
 }
 
-const idValidatorAdmin = async ( id ) => {
-    const existeId = await admin.findById(id);
-    if(!existeId) throw new Error(`El id ${id} no existe en la BD`)
-}
-
 
 module.exports = {
     RoleValidator,
     EmailValidator,
-    idValidatorUsuario,
-    idValidatorAdmin,
+    idValidatorUsuario
 }

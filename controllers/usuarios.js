@@ -1,4 +1,4 @@
-const { response } = require('express');
+const { response, request } = require('express');
 const bcrypt = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
@@ -46,11 +46,8 @@ const usuariosPut = async (req, res = response) => {
     res.json(usuario);
 }
 
-const usuariosDelete = async (req, res = response) => {
+const usuariosDelete = async (req = request, res = response) => {
     const { id } = req.params
-
-    // ! Borrado permanente de BD
-    // const user = await Usuario.findByIdAndDelete( id );
 
     const user = await Usuario.findByIdAndUpdate( id ,{estado: false} , {new: true})
 
