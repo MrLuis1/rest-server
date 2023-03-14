@@ -1,8 +1,10 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
+
 const { dbConnection } = require('../database/config');
 
 class Server {
+
     constructor(){
         this.app = express();
         this.port = process.env.PORT;
@@ -24,6 +26,7 @@ class Server {
     }
 
     middlewares() {
+
         // CORS
         this.app.use(cors());
 
@@ -32,6 +35,7 @@ class Server {
         
         // Directorio publico
         this.app.use(express.static('public'));
+        
     }
 
     routes() {
