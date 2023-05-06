@@ -12,9 +12,17 @@ const buscarUsuarios = async ( termino, res = response ) => {
   const isMongoID = ObjectId.isValid( termino );
 
   if( isMongoID ) {
-    const usuario = await Usuario.findById( termino )
+    const usuario = await Usuario.findById( termino );
+    if( !usuario ) {
+        return res.status(400).json({
+        ok: false,
+        msj: 'Usuario no encontrado'
+      });
+    }
+
     return res.status(200).json({
-      results: (usuario) ? [usuario] : []
+      ok: true,
+      results: [usuario]
     })
   }
 
@@ -26,6 +34,7 @@ const buscarUsuarios = async ( termino, res = response ) => {
   });
 
   res.status(200).json({
+    ok: true,
     results: usuario
   })
 }

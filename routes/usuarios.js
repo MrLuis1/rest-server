@@ -18,10 +18,11 @@ router.get('/',[
 ], usuariosGet);
 
 router.post('/', [
-    check("nombre", 'El nombre es obligatorio').not().isEmpty(),
-    check("password", 'La password es obligatorio y mas de 6 letras').isLength({min: 6}),
-    check("correo", 'El correo no es valido').isEmail(),
-    check("correo").custom( EmailValidator ),
+    check('empresa', 'El nombre de la empresa es obligatorio').not().isEmpty(),
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('password', 'La password es obligatorio y mas de 6 letras').isLength({min: 6}),
+    check('correo', 'El correo no es valido').isEmail(),
+    check('correo').custom( EmailValidator ),
     check('role').custom( RoleValidator ),
     validarCampos
 ], usuariosPost);
