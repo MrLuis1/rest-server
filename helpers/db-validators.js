@@ -28,11 +28,19 @@ const idProductoExiste = async ( id ) => {
     if(!exist) throw new Error(`El id ${id} que se ingreso no existe en la BD`);
 }
 
+const verificarCategoria = ( coleccion = '', coleccionPermitidas ) => {
+    
+    const exist = coleccionPermitidas.includes( coleccion );
+    if( !exist ) throw new Error(`La coleccion ingresada ${coleccion} no existe`);
+
+    return true;
+}
 
 module.exports = {
     RoleValidator,
     EmailValidator,
     idValidatorUsuario,
     idCategoriaExiste,
-    idProductoExiste
+    idProductoExiste,
+    verificarCategoria
 }

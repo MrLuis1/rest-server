@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const ProductoSchema = Schema({
   nombre: {
@@ -32,6 +32,9 @@ const ProductoSchema = Schema({
   disponible: {
     type: Boolean,
     default: true
+  },
+  img: {
+    type: String,
   }
 });
 

@@ -1,9 +1,8 @@
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const defaultExt = ['png','jpg','jpeg', 'gif']
+const defaultExt = ['png','jpg','jpeg', 'gif'];
 
-const uploadHelperFile = ( files, validateExt = defaultExt, folder = '' ) => {
-
+const uploadHelperFile = ( files, folder = '', validateExt = defaultExt ) => {
   return new Promise((resolve, reject) => {
     const { archivo } = files;
     const fileExt = archivo.name.split('.');
@@ -20,9 +19,8 @@ const uploadHelperFile = ( files, validateExt = defaultExt, folder = '' ) => {
       resolve(temporalName);
     });
   })
-
 }
 
 module.exports = {
-  uploadHelperFile
+  uploadHelperFile,
 }
